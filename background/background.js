@@ -42,6 +42,15 @@ chrome.extension.onConnect.addListener(port =>
             }
 
 
+            // Checks the form submission
+             if(request.type === 'from_sold' && request.command === "open_order_details") 
+            {
+ 
+                openSoldDetails(request.details);
+                    
+            }
+
+
 
         });
 
@@ -78,7 +87,10 @@ chrome.extension.onConnect.addListener(port =>
                 // Checks the form submission
                 if(request.type === 'from_popup' && request.command === "find_on_amazon") 
                 {
+ 
                     findOnAmazon(request.details);
+
+                    
                 }
 
 
@@ -91,6 +103,9 @@ chrome.extension.onConnect.addListener(port =>
 
 
                 }
+
+
+
 
 
 
@@ -248,6 +263,17 @@ function fetchReviseListingDetails(soldDetails)
         });
 
 
+}
+
+function openSoldDetails(details)
+{
+    return new Promise(resolve =>{
+        chrome.tabs.create({ url: details.sold.orderDetailsUrl, active: true }, function(tab) 
+        {
+            resolve();
+        });
+    })
+    
 }
 
 function findOnAmazon(details)

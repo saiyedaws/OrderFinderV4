@@ -70,7 +70,8 @@ function appendCopyDetailsButton(details)
     btn.onclick = function () 
     {
         console.log(details);
-        copyToClipboard(json); 
+        copyToClipboard(json);
+        bg_port.postMessage({ type: 'from_sold', command: "open_order_details", details: details}); 
         
     }
 
