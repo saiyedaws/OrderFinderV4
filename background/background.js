@@ -85,7 +85,9 @@ chrome.extension.onConnect.addListener(port =>
                 if(request.type === 'from_popup' && request.command === "paste_address") 
                 {
                     console.log("paste_address");
-                    amazon_port.postMessage({type:"from_background",command: "paste_address", details: request.details});
+
+                    var savedPhoneNumber = localStorage.getItem("phoneNumber");
+                    amazon_port.postMessage({type:"from_background",command: "paste_address", details: request.details, savedPhoneNumber:savedPhoneNumber });
 
 
                 }

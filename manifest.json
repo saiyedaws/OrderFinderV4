@@ -4,8 +4,7 @@
     "version": "0.1",
     "permissions": [
       "<all_urls>",
-      "tabs",
-      "clipboardRead"
+      "storage", "clipboardWrite", "clipboardRead", "storage", "contextMenus", "tabs", "activeTab", "http://*/", "https://*/", "identity" 
     ],
 
 

@@ -4,15 +4,17 @@ bg_port.onMessage.addListener((request) =>
     if(request.type === 'from_background' && request.command === "paste_address") 
     {
         console.log("paste_address_from_background recieved");
-        pasteBuyerAddress(request.details);
+        pasteBuyerAddress(request.details, request.savedPhoneNumber);
+        console.log("req.savedPhoneNumber: "+request.savedPhoneNumber);
 
     }
 
 });
 
-function pasteBuyerAddress(details){
+function pasteBuyerAddress(details, savedPhoneNumber){
 
     console.log(details);
+    console.log("savedPhoneNumber: "+savedPhoneNumber);
 
 
     document.getElementById('enterAddressFullName').value = changeBuyerName(details);
@@ -24,8 +26,7 @@ function pasteBuyerAddress(details){
     document.getElementById('enterAddressPostalCode').value = details.order.postalCode;
     document.getElementById("enterAddressStateOrRegion").value = details.order.province;
 
-
-    document.getElementById('enterAddressPhoneNumber').value = "N/A - Phone Number";
+    document.getElementById('enterAddressPhoneNumber').value = savedPhoneNumber;
     document.getElementById("BusinessHours").selectedIndex = 1; 
 
 

@@ -4,3 +4,52 @@ body{
    
 }
 
+#main_button{
+    box-sizing: border-box;
+    margin: 0;
+    font-size: 1.00rem;
+    vertical-align: middle;
+    font-family: inherit;
+    transition: all .1s linear;
+    line-height: 19px;
+    background-color: #d9e620be;
+    overflow: visible;
+
+ 
+}
+
+#paste_address{
+    box-sizing: border-box;
+    margin: 0;
+    font-size: 1.00rem;
+    vertical-align: middle;
+    font-family: inherit;
+    transition: all .1s linear;
+    line-height: 19px;
+    background-color: #b5ff9fbe;
+    overflow: visible;
+
+}
+
+#phoneID{
+font-family: "Market Sans", Arial, sans-serif;
+color: #e62048;
+font-size: .875rem;
+display: block;
+font-weight: bold;
+}
+
+.savedPhoneClass{
+font-family: "Market Sans", Arial, sans-serif;
+color: #e62048;
+font-size: .875rem;
+display: block;
+font-weight: bold;
+}
+
+
+.saved-data{
+    font-family: "Market Sans", Arial, sans-serif;
+    font-size: 1.2rem;
+    color: #f54444;
+}
