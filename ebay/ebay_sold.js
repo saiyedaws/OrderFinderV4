@@ -42,14 +42,34 @@ bg_port.onMessage.addListener((request) =>
 });
 
 
+function findOrderNumberElement(orderNumber)
+{
+    var orderNumberElement = "";
+    var orderNumbers = document.getElementsByClassName("item__order-number");
+
+    for(var i = 0; i < orderNumbers.length; i++)
+    {
+        if(orderNumbers[i].innerText.includes(orderNumber))
+        {
+            orderNumberElement = orderNumbers[i];
+            break;
+        }
+      
+    }
+
+    return orderNumberElement;
+}
 
 function appendCopyDetailsButton(details)
 {
+    /*
     //with xpath gets element that text contains ... saved to var thisHeading
     var xpath = "//span[contains(., '"+details.order.itemID+"')]";
-
     var headings = document.evaluate(xpath, document, null, XPathResult.ANY_TYPE, null );
     var thisHeading = headings.iterateNext();
+    */
+
+    var thisHeading = findOrderNumberElement(details.order.orderNumber);
 
     var parent = thisHeading.parentElement.parentElement.parentElement;
     console.log(parent);
