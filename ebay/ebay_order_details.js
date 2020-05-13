@@ -1,5 +1,6 @@
 let bg_port = chrome.runtime.connect({ name: "ebay_order_details" });
 
+/*
 console.log("Starting");
 setTimeout(() => 
 {
@@ -8,8 +9,18 @@ setTimeout(() =>
     
 
 }, 1000);
+*/
 
 
+waitUntilElementExists('.row.item.ng-scope', (el) => sendOrderDetailsToBackGround());
+
+
+function sendOrderDetailsToBackGround()
+{
+    console.log(scrapeOrderDetails());
+    bg_port.postMessage({ type: 'from_order_details', orderDetails: scrapeOrderDetails()});
+
+}
 
 
 

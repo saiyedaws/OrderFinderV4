@@ -8,12 +8,18 @@
 
 
     <body>
-        <h1><span class = "heading">Ebay Order Finder</span> </h1>
+
+
+
+
+
+
+        <h2><span class = "heading">Ebay Order Finder</span> </h2>
 
 
         <form id="main_form">
 
-        <input type="text" id="json">
+        <input type="text" placeholder="Leave Blank - Click Find On Amazon" id="json">
         <br>
         <br>
         <button id="main_button">Find On Amazon</button>
@@ -24,28 +30,42 @@
             <button id="paste_address">Paste Buyer Address</button>
         </form>
 
+
         <br>
-        <br>
-        <br>
 
-        <form id="phone_form">
 
-            <h1><span>Enter Phone Number</span> </h1>
-            <input type="text" placeholder = "Enter Phone Here: xxx-xxx-xxxx" id="phoneID">
-            <input type="text" placeholder = "Enter PCID: PC #xx" id="pcID">
-            <button id="phone_button">Save Phone #</button>
+        <select id="profile">
+            <option value="0">Select an Email</option>
+        </select>
+        <button id="save_email_button">Set Email</button>
+        <button id="make_note_button">Make Note & Copy</button>
 
-    
-        </form>
-
+          <br>
+          <br>
        
 
-        
-            <h3><span class = "saved-data">Current Information Saved:</span></h3>
-            <p id="savedPhoneID" class = "saved-data">savedPhoneID: </p>
-            <p id="savedPCID" class = "saved-data">savedPCID: </p>             
-   
 
+            <span id="savedPCID" class = "saved-data">PC Name: Not Set</span> 
+            <br>  
+            <span id="savedPhoneID" class = "saved-data">Phone Number: Not Set</span>
+            <br>
+            <span id="savedEmailID" class = "saved-data">Email: Not Set </span>
+            <br>
+            <br>
+
+            <h2><span class = "heading_note">Note: </span> </h2>
+            <span id="noteID" class = "saved-data"></span>
+
+            <br>
+            <br>
+
+            <span id = "amazon_heading" class = "saved-amazon-data">Review your last order: </span>
+            <p id="amazon_item_title" class = "saved-amazon-data">amazon_item_title: </p>
+            <img id = "amazon_item_image" src="" alt="amazon Image">
+            <p id="amazon_total_price" class = "saved-amazon-data">amazon_total_price: </p>
+            <p id="amazon_buyer_address" class = "saved-amazon-data">amazon_buyer_address: </p>
+            <p id="amazon_delivery_date" class = "saved-amazon-data">amazon_delivery_date: </p>             
+            
 
         <script src="popup.js"></script>
 

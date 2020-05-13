@@ -1,7 +1,6 @@
 let bg_port = chrome.runtime.connect({ name: "ebay_sold" });
 
-
-bg_port.postMessage({ type: 'from_sold', command: "inialize_page"});
+//bg_port.postMessage({ type: 'from_sold', command: "inialize_page"});
 
 
 
@@ -18,6 +17,7 @@ bg_port.onMessage.addListener((request) =>
 
     if(request.type === 'from_background' && request.command === "append_completed_buttons") 
     {
+        /*
         console.log(request.processedItems);
 
         setTimeout(() => {
@@ -31,7 +31,9 @@ bg_port.onMessage.addListener((request) =>
 
             
         }, 300);
-        
+        */
+
+       waitUntilElementExists('.process_address', addProcessedCopyButtons(request.processedItems));
 
 
 
@@ -40,6 +42,18 @@ bg_port.onMessage.addListener((request) =>
 
 
 });
+
+
+
+function addProcessedCopyButtons(processedItems)
+{
+    for (i = 0; i < processedItems.length; i++) 
+    {
+        var details = processedItems[i];
+        appendCopyDetailsButton(details);
+
+    }    
+}
 
 
 function findOrderNumberElement(orderNumber)
@@ -107,6 +121,7 @@ function appendButton(soldItem)
     var btn = document.createElement("BUTTON");
     btn.innerHTML = "Process Address";
     btn.className = "process_address";
+    
     OrderDetailButtons.appendChild(btn);
 
 
@@ -143,12 +158,36 @@ function appendButton(soldItem)
 }
 
 
-setTimeout(() => 
+waitUntilElementDoesntExists();
+
+
+function waitUntilElementDoesntExists()
 {
-    var soldItems = document.getElementsByClassName("sold-itemcard");
    
+        var selector = ".process_address";
 
 
+        var el = document.querySelector(selector);
+        console.log("Checking");
+
+        if (!el)
+        {
+            console.log("Not Found");
+            addProcessButtonToAllSoldCards();
+            bg_port.postMessage({ type: 'from_sold', command: "inialize_page"});
+        }
+        
+        setTimeout(() => waitUntilElementDoesntExists(), 3000);
+}
+        
+
+
+
+
+function addProcessButtonToAllSoldCards()
+{
+
+    var soldItems = document.getElementsByClassName("sold-itemcard");
     for (var i = 0; soldItems[i]; i++) 
     {
         try
@@ -160,8 +199,16 @@ setTimeout(() =>
         
     }
 
-    
-}, 200);
+}
+
+
+
+
+
+
+
+
+
 
 
 function copyToClipboard(text) 

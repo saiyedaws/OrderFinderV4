@@ -13,32 +13,38 @@
       "48": "icons/icon48.png",
      "128": "icons/icon128.png" },
 
+     "options_page": "options/options.html",
+
     "content_scripts": [
   
       {
         "matches": ["*://www.ebay.ca/mys/sold*", "*://ebay.ca/mys/sold*"],
-        "js": ["libraries/jquery.min.js", "ebay/ebay_sold.js"],
+        "js": ["libraries/jquery.min.js","libraries/custom.js", "ebay/ebay_sold.js"],
         "css": ["ebay/ebay.css"],
         "run_at": "document_end"
       },
       {
         "matches": ["*://www.ebay.ca/vod/FetchOrderDetails*", "*://ebay.ca/vod/FetchOrderDetails*"],
-        "js": ["libraries/jquery.min.js", "ebay/ebay_order_details.js"],
+        "js": ["libraries/jquery.min.js","libraries/custom.js", "ebay/ebay_order_details.js"],
         "run_at": "document_end"
       },
       {
         "matches": ["*://www.ebay.ca/sh/lst/active*", "*://ebay.ca/sh/lst/active*"],
-        "js": ["libraries/jquery.min.js", "ebay/ebay_revise_listing.js"],
+        "js": ["libraries/jquery.min.js","libraries/custom.js", "ebay/ebay_revise_listing.js"],
         "run_at": "document_end"
       },
       {
         "matches": ["*://amazon.ca/*", "*://*.amazon.ca/*", "*://amazon.com/*", "*://*.amazon.com/*"],
-        "js": ["libraries/jquery.min.js", "amazon/amazon.js"],
+        "js": ["libraries/jquery.min.js","libraries/custom.js", "amazon/amazon.js"],
         "run_at": "document_end"
       },
       {
         "matches": ["*://amazon.ca/*", "*://*.amazon.ca/*", "*://amazon.com/*", "*://*.amazon.com/*"],
-        "js": ["libraries/jquery.min.js", "amazon/amazon_address_select.js"],
+        "js": ["libraries/jquery.min.js","libraries/custom.js", "amazon/amazon_address_select.js"],
+        "run_at": "document_end"
+      },{
+        "matches": ["*://amazon.ca/gp/buy/*", "*://*.amazon.ca/gp/buy/*"],
+        "js": ["libraries/jquery.min.js","libraries/custom.js", "amazon/amazon_place_order.js"],
         "run_at": "document_end"
       }
 

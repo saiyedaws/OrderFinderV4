@@ -75,6 +75,8 @@ chrome.extension.onConnect.addListener(port =>
         }
 
 
+
+
         // Checks the connection source
         if(port.name === 'popup') 
         {
@@ -101,6 +103,19 @@ chrome.extension.onConnect.addListener(port =>
                     var savedPhoneNumber = localStorage.getItem("phoneNumber");
                     amazon_port.postMessage({type:"from_background",command: "paste_address", details: request.details, savedPhoneNumber:savedPhoneNumber });
 
+
+                }
+
+
+                if(request.type === 'from_popup' && request.command === "copy_note") 
+                {
+                    var input = document.createElement('textarea');
+                    document.body.appendChild(input);
+                    input.value = request.note;
+                    input.focus();
+                    input.select();
+                    document.execCommand('Copy');
+                    input.remove();
 
                 }
 
@@ -147,6 +162,7 @@ async function getOrderDetails(soldDetails)
 
 
 }
+
 
 
 

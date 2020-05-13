@@ -3,13 +3,20 @@ let bg_port = chrome.runtime.connect({ name: "ebay_revise_listing" });
 console.log("Starting Ebay SKU!");
 
 
-
+/*
 setTimeout(() => {
     getItemRowDetails();
 
     bg_port.postMessage({ type: 'from_revise_listing', reviseListingDetails: getItemRowDetails()});
     
 }, 1000);
+*/
+
+waitUntilElementExists('.cell-wrapper',(el) =>
+{
+    getItemRowDetails();
+    bg_port.postMessage({ type: 'from_revise_listing', reviseListingDetails: getItemRowDetails()});
+});
 
 
 function getItemRowDetails()
