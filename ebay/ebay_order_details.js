@@ -30,108 +30,13 @@ function scrapeOrderDetails()
 var shippingAddressNameVar = document.getElementById("shippingAddressName").innerText;
 var shippingAddressLine1Var = document.getElementById("shippingAddressLine1").innerText;
 var shippingAddressLine2Var = document.getElementById("shippingAddressLine2").innerText;
-var shippingAddressCityStateZipVar = document.getElementById("shippingAddressCityStateZip").innerText;
+var shippingAddressCityStateZipVar = document.getElementById("shippingAddressCityStateZip").innerText.toLowerCase();
 
-var cityRegex = ".*(?= [A-Z]{2,3} )";
-var cityVar = shippingAddressCityStateZipVar.match(cityRegex)[0];
+var shippingAddressCityStateZipObject = getshippingAddressCityStateZip();
 
-var provinceRegex = "(?<= )[A-Z]{2}(?= )";
-var provinceVar = shippingAddressCityStateZipVar.match(provinceRegex)[0];
-
-
-if(provinceVar == "AB")
-{
-    provinceVar = "Alberta";
-    console.log("provinceVar:"+provinceVar);
-
-}
-
-if(provinceVar == "BC")
-{
-    provinceVar = "British Columbia";
-    console.log("provinceVar:"+provinceVar);
-}
-
-if(provinceVar == "MB")
-{
-    provinceVar = "Manitoba";
-    console.log("provinceVar:"+provinceVar);
-
-}
-
-if(provinceVar == "NB")
-{
-    provinceVar = "New Brunswick";
-    console.log("provinceVar:"+provinceVar);
-
-}
-
-if(provinceVar == "NL")
-{
-    provinceVar = "Newfoundland";
-    console.log("provinceVar: "+provinceVar);
-
-}
-
-if(provinceVar == "NT")
-{
-    provinceVar = "Northwest Territories";
-    console.log("provinceVar: "+provinceVar);
-
-}
-
-if(provinceVar == "NS")
-{
-    provinceVar = "Nova Scotia";
-    console.log("provinceVar: "+provinceVar);
-
-}
-
-if(provinceVar == "NU")
-{
-    provinceVar = "Nunavut";
-    console.log("provinceVar: "+provinceVar);
-
-}
-
-if(provinceVar == "ON")
-{
-    provinceVar = "Ontario";
-    console.log("provinceVar: "+provinceVar);
-
-}
-
-if(provinceVar == "PE")
-{
-    provinceVar = "Prince Edward Island";
-    console.log("provinceVar: "+provinceVar);
-
-}
-
-if(provinceVar == "QC")
-{
-    provinceVar = "Quebec";
-    console.log("provinceVar: "+provinceVar);
-
-}
-
-if(provinceVar == "SK")
-{
-    provinceVar = "Saskatchewan";
-    console.log("provinceVar: "+provinceVar);
-
-}
-
-if(provinceVar == "YT")
-{
-    provinceVar = "Yukon";
-    console.log("provinceVar: "+provinceVar);
-
-}
-
-
-var postalCodeRegex = "(?<= [A-Z]{2,3} ).*";
-var postalCodeVar = shippingAddressCityStateZipVar.match(postalCodeRegex)[0];
+var cityVar = shippingAddressCityStateZipObject.cityVar;
+var provinceVar = shippingAddressCityStateZipObject.provinceVar;
+var postalCodeVar = shippingAddressCityStateZipObject.postalCodeVar;
 
 
 
@@ -157,3 +62,216 @@ var orderDetails =
 return orderDetails;
 
 }
+
+
+
+function getshippingAddressCityStateZip(shippingAddressCityStateZipVar)
+{
+
+var shippingAddressCityStateZipVar = document.getElementById("shippingAddressCityStateZip").innerText.toLowerCase();
+
+shippingAddressCityStateZipVar = shippingAddressCityStateZipVar.replace(" ab "," alberta ");
+shippingAddressCityStateZipVar = shippingAddressCityStateZipVar.replace(" bc "," british columbia ");
+shippingAddressCityStateZipVar = shippingAddressCityStateZipVar.replace(" mb "," manitoba ");
+shippingAddressCityStateZipVar = shippingAddressCityStateZipVar.replace(" nb "," new brunswick ");
+shippingAddressCityStateZipVar = shippingAddressCityStateZipVar.replace(" nl "," newfoundland ");
+shippingAddressCityStateZipVar = shippingAddressCityStateZipVar.replace(" nt "," northwest territories ");
+shippingAddressCityStateZipVar = shippingAddressCityStateZipVar.replace(" ns "," nova scotia ");
+shippingAddressCityStateZipVar = shippingAddressCityStateZipVar.replace(" nu "," nunavut ");
+shippingAddressCityStateZipVar = shippingAddressCityStateZipVar.replace(" on "," ontario ");
+shippingAddressCityStateZipVar = shippingAddressCityStateZipVar.replace(" pe "," prince edward island ");
+shippingAddressCityStateZipVar = shippingAddressCityStateZipVar.replace(" qc "," quebec ");
+shippingAddressCityStateZipVar = shippingAddressCityStateZipVar.replace(" sk "," saskatchewan ");
+shippingAddressCityStateZipVar = shippingAddressCityStateZipVar.replace(" yt "," yukon ");
+
+
+var provinceVar = "";
+var postalCodeVar = "";
+var temp = "";
+var cityVar = "";
+
+console.log(shippingAddressCityStateZipVar);
+
+
+temp = "alberta";
+if(shippingAddressCityStateZipVar.includes(temp))
+{
+    provinceVar = "Alberta";
+    var cityRegex = ".*(?= "+temp+")";
+    cityVar = shippingAddressCityStateZipVar.match(cityRegex)[0];
+
+    var postalCodeRegex = "(?<="+temp+" ).*"
+    postalCodeVar = shippingAddressCityStateZipVar.match(postalCodeRegex)[0];
+
+}
+
+temp = "british columbia";
+if(shippingAddressCityStateZipVar.includes(temp))
+{
+    provinceVar = "British Columbia";
+    var cityRegex = ".*(?= "+temp+")";
+    cityVar = shippingAddressCityStateZipVar.match(cityRegex)[0];
+
+    var postalCodeRegex = "(?<="+temp+" ).*"
+    postalCodeVar = shippingAddressCityStateZipVar.match(postalCodeRegex)[0];
+
+}
+
+
+temp = "manitoba";
+if(shippingAddressCityStateZipVar.includes(temp))
+{
+    provinceVar = "Manitoba";
+    var cityRegex = ".*(?= "+temp+")";
+    cityVar = shippingAddressCityStateZipVar.match(cityRegex)[0];
+
+    var postalCodeRegex = "(?<="+temp+" ).*"
+    postalCodeVar = shippingAddressCityStateZipVar.match(postalCodeRegex)[0];
+
+}
+
+
+temp = "new brunswick";
+if(shippingAddressCityStateZipVar.includes(temp))
+{
+    provinceVar = "New Brunswick";
+    var cityRegex = ".*(?= "+temp+")";
+    cityVar = shippingAddressCityStateZipVar.match(cityRegex)[0];
+
+    var postalCodeRegex = "(?<="+temp+" ).*"
+    postalCodeVar = shippingAddressCityStateZipVar.match(postalCodeRegex)[0];
+
+}
+
+
+temp = "newfoundland";
+if(shippingAddressCityStateZipVar.includes(temp))
+{
+    provinceVar = "Newfoundland";
+    var cityRegex = ".*(?= "+temp+")";
+    cityVar = shippingAddressCityStateZipVar.match(cityRegex)[0];
+
+    var postalCodeRegex = "(?<="+temp+" ).*"
+    postalCodeVar = shippingAddressCityStateZipVar.match(postalCodeRegex)[0];
+
+}
+
+
+temp = "northwest territories";
+if(shippingAddressCityStateZipVar.includes(temp))
+{
+    provinceVar = "Northwest Territories";
+    var cityRegex = ".*(?= "+temp+")";
+    cityVar = shippingAddressCityStateZipVar.match(cityRegex)[0];
+
+    var postalCodeRegex = "(?<="+temp+" ).*"
+    postalCodeVar = shippingAddressCityStateZipVar.match(postalCodeRegex)[0];
+
+}
+
+temp = "nova scotia";
+if(shippingAddressCityStateZipVar.includes(temp))
+{
+    provinceVar = "Nova Scotia";
+    var cityRegex = ".*(?= "+temp+")";
+    cityVar = shippingAddressCityStateZipVar.match(cityRegex)[0];
+
+    var postalCodeRegex = "(?<="+temp+" ).*"
+    postalCodeVar = shippingAddressCityStateZipVar.match(postalCodeRegex)[0];
+
+}
+
+temp = "nunavut";
+if(shippingAddressCityStateZipVar.includes(temp))
+{
+    provinceVar = "Nunavut";
+    var cityRegex = ".*(?= "+temp+")";
+    cityVar = shippingAddressCityStateZipVar.match(cityRegex)[0];
+
+    var postalCodeRegex = "(?<="+temp+" ).*"
+    postalCodeVar = shippingAddressCityStateZipVar.match(postalCodeRegex)[0];
+
+}
+
+temp = "ontario";
+if(shippingAddressCityStateZipVar.includes(temp))
+{
+    provinceVar = "Ontario";
+    var cityRegex = ".*(?= "+temp+")";
+    cityVar = shippingAddressCityStateZipVar.match(cityRegex)[0];
+
+    var postalCodeRegex = "(?<="+temp+" ).*"
+    postalCodeVar = shippingAddressCityStateZipVar.match(postalCodeRegex)[0];
+
+}
+
+temp = "prince edward island";
+if(shippingAddressCityStateZipVar.includes(temp))
+{
+    provinceVar = "Prince Edward Island";
+    var cityRegex = ".*(?= "+temp+")";
+    cityVar = shippingAddressCityStateZipVar.match(cityRegex)[0];
+
+    var postalCodeRegex = "(?<="+temp+" ).*"
+    postalCodeVar = shippingAddressCityStateZipVar.match(postalCodeRegex)[0];
+
+}
+
+
+temp = "quebec";
+if(shippingAddressCityStateZipVar.includes(temp))
+{
+    provinceVar = "Quebec";
+    var cityRegex = ".*(?= "+temp+")";
+    cityVar = shippingAddressCityStateZipVar.match(cityRegex)[0];
+
+    var postalCodeRegex = "(?<="+temp+" ).*"
+    postalCodeVar = shippingAddressCityStateZipVar.match(postalCodeRegex)[0];
+
+}
+
+temp = "saskatchewan";
+if(shippingAddressCityStateZipVar.includes(temp))
+{
+    provinceVar = "Saskatchewan";
+    var cityRegex = ".*(?= "+temp+")";
+    cityVar = shippingAddressCityStateZipVar.match(cityRegex)[0];
+
+    var postalCodeRegex = "(?<="+temp+" ).*"
+    postalCodeVar = shippingAddressCityStateZipVar.match(postalCodeRegex)[0];
+
+}
+
+temp = "yukon";
+if(shippingAddressCityStateZipVar.includes(temp))
+{
+    provinceVar = "Yukon";
+    var cityRegex = ".*(?= "+temp+")";
+    cityVar = shippingAddressCityStateZipVar.match(cityRegex)[0];
+
+    var postalCodeRegex = "(?<="+temp+" ).*"
+    postalCodeVar = shippingAddressCityStateZipVar.match(postalCodeRegex)[0];
+
+}
+
+
+
+
+
+
+var shippingAddressCityStateZipObject = 
+{
+    provinceVar:provinceVar,
+    cityVar:cityVar,
+    postalCodeVar:postalCodeVar
+
+}
+
+
+
+return shippingAddressCityStateZipObject;
+
+}
+
+
+

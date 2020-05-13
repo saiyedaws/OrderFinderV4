@@ -28,14 +28,19 @@ function getDeliveryDate()
     var date = document.getElementsByClassName("a-row a-text-bold a-size-medium a-spacing-small")[0];
 
 
+
+    /*
     var month = date.children[1].innerText;
     var day = date.children[2].innerText;
     var year = date.children[3].innerText;
 
     deliveryDate = "ETA "+month+" "+day+" "+year;
+    */
+
+   deliveryDate = date.innerText;
+
     return deliveryDate;
-}
-;
+};
 
 
 function getAmazonDeliveryData(){
