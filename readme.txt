@@ -1,4 +1,4 @@
-echo installation on linux pc
+echo copy and paste into terminal or into gitbash
 
 echo https://github.com/saiyedaws/OrderFinderV4
 
@@ -9,6 +9,7 @@ echo Updating Chrome Extensions
 
 cd --
 cd Documents
+mkdir ChromeExtensions
 cd ChromeExtensions
 rm -rf OrderFinderV4
 git clone https://github.com/saiyedaws/OrderFinderV4
