@@ -27,33 +27,45 @@
 }
 
 .copy_address{
-    display:inline-block;
-    padding:0.2em 1.45em;
-    margin:0.1em;
-    border:0.15em solid #CCCCCC;
-    box-sizing: border-box;
-    text-decoration:none;
-    font-family:'Segoe UI','Roboto',sans-serif;
-    font-weight:400;
-    color:#000000;
-    background-color:#CCCCCC;
-    text-align:center;
-    position:relative;
+    -webkit-tap-highlight-color: transparent;
+font: inherit;
+box-sizing: border-box;
+margin: 0;
+font-family: inherit;
+overflow: visible;
+text-transform: none;
+transition: all .3s ease 0s!important;
+background-image: none!important;
+box-shadow: none!important;
+position: relative;
+outline: 0!important;
+margin-bottom: 0;
+touch-action: manipulation;
+-webkit-appearance: button;
+display: inline-block;
+vertical-align: middle;
+user-select: none;
+text-align: left!important;
+-webkit-box-align: center;
+align-items: center;
+border: 1px solid #d8d8d8;
+border-radius: 4px;
+font-size: .875rem;
+line-height: 16px;
+min-height: 30px;
+padding: .4375rem .9375rem;
+background-color: #0a4908;
+border-color: rgba(51,51,51,.15);
+color: #fff;
+font-weight: 600;
+cursor: pointer;
+white-space: normal;
     }
 
-.copy_address:hover
-{
-    border-color:#7a7a7a;
-}
+.copy_address:active {
+    background-color: #8e3e3e;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
 
-.copy_address:active{
-    background-color:#999999;
-}
 
-@media all and (max-width:30em)
-{
-.copy_address{
-    display:block;
-    margin:0.2em auto;
-    }
-}

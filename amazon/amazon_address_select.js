@@ -41,45 +41,55 @@ function pasteBuyerAddress(details, savedPhoneNumber){
 function changeBuyerName(details)
 {
     var name = details.order.shippingAddressName;
+    var letter = "xx";
 
     if(details.sold.username === "hockey-grandpa")
     {
-        name = name + " a";
+        letter = "a";
+        name = letter+"_"+name;
+
     }
 
     if(details.sold.username === "coach-cody")
     {
-        name = name + " b";
+        letter = "a";
+        name = letter+"_"+name;
     }
 
     if(details.sold.username === "healthy_planet")
     {
-        name = name + " c";
+        letter = "b";
+        name = letter+"_"+name;
     }
 
     if(details.sold.username === "tamah_95")
     {
-        name = name + " d";
+        letter = "c";
+        name = letter+"_"+name;
     }
 
     if(details.sold.username === "greba3714")
     {
-        name = name + " e";
+        letter = "d";
+        name = letter+"_"+name;
     }
 
     if(details.sold.username === "my_games_mart")
     {
-        name = name + " f";
+        letter = "e";
+        name = letter+"_"+name;
     }
 
     if(details.sold.username === "mymom-n-popshop")
     {
-        name = name + " g";
+        letter = "f";
+        name = letter+"_"+name;
     }
 
     if(details.sold.username === "hanchau75")
     {
-        name = name + " h";
+        letter = "g";
+        name = letter+"_"+name;
     }
 
     return name;
