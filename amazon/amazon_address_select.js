@@ -52,43 +52,43 @@ function changeBuyerName(details)
 
     if(details.sold.username === "coach-cody")
     {
-        letter = "a";
+        letter = "b";
         name = letter+"_"+name;
     }
 
     if(details.sold.username === "healthy_planet")
     {
-        letter = "b";
+        letter = "c";
         name = letter+"_"+name;
     }
 
     if(details.sold.username === "tamah_95")
     {
-        letter = "c";
+        letter = "d";
         name = letter+"_"+name;
     }
 
     if(details.sold.username === "greba3714")
     {
-        letter = "d";
+        letter = "e";
         name = letter+"_"+name;
     }
 
     if(details.sold.username === "my_games_mart")
     {
-        letter = "e";
+        letter = "f";
         name = letter+"_"+name;
     }
 
     if(details.sold.username === "mymom-n-popshop")
     {
-        letter = "f";
+        letter = "g";
         name = letter+"_"+name;
     }
 
     if(details.sold.username === "hanchau75")
     {
-        letter = "g";
+        letter = "h";
         name = letter+"_"+name;
     }
 
