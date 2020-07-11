@@ -282,15 +282,19 @@ function getshippingAddressCityStateZip(shippingAddressCityStateZipVar) {
 
 function makeQuantityElmBigger(){
     var elems = document.querySelectorAll("[id*='_Quantity']")
-    console.log(elems.length);
 
-    var quantityElm = elems[0];
+
+    for (var i = 0; i < elems.length; i++) 
+    {
+     
+    
+    var quantityElm = elems[i];
     var quantity = quantityElm.innerText;
-
-
-    quantityElm.style.fontSize = "x-large";
-    quantityElm.style.color = "red";
-
-    quantityElm.innerText = "QUANTITY: "+quantity
+    
+        quantityElm.style.fontSize = "x-large";
+        quantityElm.style.color = "red";
+    
+        quantityElm.innerText = "QUANTITY: "+quantity
+    }
     
 }
