@@ -20,7 +20,12 @@ waitUntilElementExists(".row.item.ng-scope", (el) =>
 
 function sendOrderDetailsToBackGround() 
 {
-    makeQuantityElmBigger();
+    try {
+        makeQuantityElmBigger();
+    } catch (error) {
+        
+    }
+    //makeQuantityElmBigger();
 
 
 
