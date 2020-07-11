@@ -12,22 +12,15 @@ setTimeout(() =>
 */
 
 waitUntilElementExists(".row.item.ng-scope", (el) =>
-
-
-    
 	sendOrderDetailsToBackGround()
 );
 
-function sendOrderDetailsToBackGround() 
-{
-    try {
-        makeQuantityElmBigger();
-    } catch (error) {
-        
-    }
-    //makeQuantityElmBigger();
+waitUntilElementExistsViaQuerySelectorAll("[id*='_Quantity']", (el) =>
+	makeQuantityElmBigger()
+);
 
-
+function sendOrderDetailsToBackGround() {
+	//makeQuantityElmBigger();
 
 	console.log(scrapeOrderDetails());
 	bg_port.postMessage({
@@ -279,22 +272,22 @@ function getshippingAddressCityStateZip(shippingAddressCityStateZipVar) {
 	return shippingAddressCityStateZipObject;
 }
 
+function makeQuantityElmBigger() {
+	try {
+		console.log("start makeQuantityElmBigger");
+		var elems = document.querySelectorAll("[id*='_Quantity']");
+		console.log(elems);
 
-function makeQuantityElmBigger(){
-    var elems = document.querySelectorAll("[id*='_Quantity']")
+		for (var i = 0; i < elems.length; i++) {
+			var quantityElm = elems[i];
+			var quantity = quantityElm.innerText;
 
+			quantityElm.style.fontSize = "x-large";
+			quantityElm.style.color = "red";
 
-    for (var i = 0; i < elems.length; i++) 
-    {
-     
-    
-    var quantityElm = elems[i];
-    var quantity = quantityElm.innerText;
-    
-        quantityElm.style.fontSize = "x-large";
-        quantityElm.style.color = "red";
-    
-        quantityElm.innerText = "QUANTITY: "+quantity
-    }
-    
+			quantityElm.innerText = "QUANTITY: " + quantity;
+		}
+	} catch (error) {
+		console.log(error);
+	}
 }
