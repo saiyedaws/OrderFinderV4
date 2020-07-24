@@ -23,10 +23,10 @@ async function updateQuantityAndMsgBackground()
 
     var itemRowDetails = await getItemRowDetails();
     
-    if(itemRowDetails.quantity < 2)
+    if(itemRowDetails.quantity < 3)
     {
 
-        await setRowCellValue(itemRowDetails.itemID, 'availableQuantity', 2);
+        await setRowCellValue(itemRowDetails.itemID, 'availableQuantity', 3);
     }
 
   
