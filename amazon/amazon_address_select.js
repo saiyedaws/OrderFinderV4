@@ -17,17 +17,31 @@ function pasteBuyerAddress(details, savedPhoneNumber){
     console.log("savedPhoneNumber: "+savedPhoneNumber);
 
 
-    document.getElementById('enterAddressFullName').value = changeBuyerName(details);
+    document.querySelectorAll('[id*="enterAddressFullName"]')[0].value  = changeBuyerName(details);
+    //document.getElementById('enterAddressFullName').value = changeBuyerName(details);
 
-    document.getElementById('enterAddressAddressLine1').value = "- "+details.order.shippingAddressLine1;
+    document.querySelectorAll('[id*="enterAddressAddressLine1"]')[0].value  = "- "+details.order.shippingAddressLine1;
+   // document.getElementById('enterAddressAddressLine1').value = "- "+details.order.shippingAddressLine1;
 
-    document.getElementById('enterAddressAddressLine2').value = details.order.shippingAddressLine2;
-    document.getElementById('enterAddressCity').value = details.order.city;
-    document.getElementById('enterAddressPostalCode').value = details.order.postalCode;
-    document.getElementById("enterAddressStateOrRegion").value = details.order.province;
+   document.querySelectorAll('[id*="enterAddressAddressLine2"]')[0].value  = details.order.shippingAddressLine2;
+    //document.getElementById('enterAddressAddressLine2').value = details.order.shippingAddressLine2;
 
-    document.getElementById('enterAddressPhoneNumber').value = savedPhoneNumber;
-    document.getElementById("BusinessHours").selectedIndex = 1; 
+
+    document.querySelectorAll('[id*="enterAddressCity"]')[0].value  = details.order.city;
+    //document.getElementById('enterAddressCity').value = details.order.city;
+
+    document.querySelectorAll('[id*="enterAddressPostalCode"]')[0].value  = details.order.postalCode;
+    //document.getElementById('enterAddressPostalCode').value = details.order.postalCode;
+    
+    document.querySelectorAll('[id*="enterAddressStateOrRegion"]')[0].value  = details.order.province;
+    //document.getElementById("enterAddressStateOrRegion").value = details.order.province;
+
+    document.querySelectorAll('[id*="enterAddressPhoneNumber"]')[0].value  = savedPhoneNumber;
+   // document.getElementById('enterAddressPhoneNumber').value = savedPhoneNumber;
+
+
+   document.querySelectorAll('[id*="BusinessHours"]')[0].selectedIndex = 1;
+   // document.getElementById("BusinessHours").selectedIndex = 1; 
 
 
 
