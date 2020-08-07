@@ -20,10 +20,24 @@ function pasteBuyerAddress(details, savedPhoneNumber){
     document.querySelectorAll('[id*="enterAddressFullName"]')[0].value  = changeBuyerName(details);
     //document.getElementById('enterAddressFullName').value = changeBuyerName(details);
 
-    document.querySelectorAll('[id*="enterAddressAddressLine1"]')[0].value  = "- "+details.order.shippingAddressLine1;
-   // document.getElementById('enterAddressAddressLine1').value = "- "+details.order.shippingAddressLine1;
+    try {
+        document.getElementById('enterAddressAddressLine1').value = "- "+details.order.shippingAddressLine1;
+    } catch (error) {
+        document.querySelectorAll('[id*="enterAddressLine1"]')[0].value  = "- "+details.order.shippingAddressLine1;
+        console.log(error);
+    }
 
-   document.querySelectorAll('[id*="enterAddressAddressLine2"]')[0].value  = details.order.shippingAddressLine2;
+    // document.getElementById('enterAddressAddressLine1').value = "- "+details.order.shippingAddressLine1;
+
+    try {
+        document.querySelectorAll('[id*="enterAddressLine2"]')[0].value  = details.order.shippingAddressLine2;
+    } catch (error) {
+        document.getElementById('enterAddressAddressLine2').value = details.order.shippingAddressLine2;
+        console.log(error);
+    }
+
+    
+   //document.querySelectorAll('[id*="enterAddressLine2"]')[0].value  = details.order.shippingAddressLine2;
     //document.getElementById('enterAddressAddressLine2').value = details.order.shippingAddressLine2;
 
 
