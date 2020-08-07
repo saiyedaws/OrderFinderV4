@@ -62,11 +62,19 @@ function pasteBuyerAddress(details, savedPhoneNumber){
    }
 
  
-   setInterval(() => {
+
     try {
         var businessHours = $('[name="address-ui-widgets-addr-details-business-hours"]'); // Yes, it's called .val(), not .value()
         businessHours.val("BOTH").change();
-    
+
+        setTimeout(() => {
+            businessHours.val("BOTH").change();
+        }, 100);
+
+        setTimeout(() => {
+            businessHours.val("BOTH").change();
+        }, 200);
+       
     
        } catch (error) {
     
@@ -74,7 +82,8 @@ function pasteBuyerAddress(details, savedPhoneNumber){
         console.log(error);
        }
     
-   }, 100);
+
+   
 
 
 
