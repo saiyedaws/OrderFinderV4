@@ -36,7 +36,7 @@ function pasteBuyerAddress(details, savedPhoneNumber){
         console.log(error);
     }
 
-    
+
    //document.querySelectorAll('[id*="enterAddressLine2"]')[0].value  = details.order.shippingAddressLine2;
     //document.getElementById('enterAddressAddressLine2').value = details.order.shippingAddressLine2;
 
@@ -54,8 +54,17 @@ function pasteBuyerAddress(details, savedPhoneNumber){
    // document.getElementById('enterAddressPhoneNumber').value = savedPhoneNumber;
 
 
-   document.querySelectorAll('[id*="BusinessHours"]')[0].selectedIndex = 1;
-   // document.getElementById("BusinessHours").selectedIndex = 1; 
+   try {
+    document.getElementById("BusinessHours").selectedIndex = 1; 
+
+   } catch (error) {
+    var businessHours = $('[name="address-ui-widgets-addr-details-business-hours"]'); // Yes, it's called .val(), not .value()
+    businessHours.val("BOTH").change();
+
+
+    console.log(error);
+   }
+
 
 
 
