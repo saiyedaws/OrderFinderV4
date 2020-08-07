@@ -58,8 +58,16 @@ function pasteBuyerAddress(details, savedPhoneNumber){
     document.getElementById("BusinessHours").selectedIndex = 1; 
 
    } catch (error) {
+    console.log(error);
+   }
+
+ 
+   try {
     var businessHours = $('[name="address-ui-widgets-addr-details-business-hours"]'); // Yes, it's called .val(), not .value()
     businessHours.val("BOTH").change();
+
+
+   } catch (error) {
 
 
     console.log(error);
