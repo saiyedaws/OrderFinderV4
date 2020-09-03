@@ -47,6 +47,10 @@ font-weight: bold;
     color: #f54444;
 }
 
+.message{
+    color: #f54444;
+}
+
 #amazon_item_title{
 font-size: 13px;
 line-height: 19px;

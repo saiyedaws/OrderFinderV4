@@ -37,11 +37,13 @@ function pasteBuyerAddress(details, savedPhoneNumber)
     var postalCode = details.order.postalCode;
     pastePostalCode(postalCode);
 
+    pasteBusinessHours();
+
     var phoneNumber = savedPhoneNumber;
     pastePhoneNumber(phoneNumber);
 
     
-    pasteBusinessHours();
+   
 
 
 
