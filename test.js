@@ -1,58 +1,59 @@
-<!DOCTYPE HTML>
-<html>
-  <head>
-    <style>
-      body {
-        margin: 0px;
-        padding: 0px;
-      }
-    </style>
-  </head>
-  <body>
-    <canvas id="myCanvas" width="500" height="500" style="border: 1px solid black;"></canvas>
-    <script>
-      function wrapText(context, text, x, y, maxWidth, lineHeight) {
-        var words = text.split(' ');
-        var line = '';
-
-        for(var n = 0; n < words.length; n++) {
-          var testLine = line + words[n] + ' ';
-          var metrics = context.measureText(testLine);
-          var testWidth = metrics.width;
-          if (testWidth > maxWidth && n > 0) {
-            context.fillText(line, x, y);
-            line = words[n] + ' ';
-            y += lineHeight;
-          }
-          else {
-            line = testLine;
-          }
-        }
-        context.fillText(line, x, y);
-      }
-      
-      var canvas = document.getElementById('myCanvas');
-      var context = canvas.getContext('2d');
-
-      var fontSize = (canvas.height / 10) * 0.45;
-	    var extraHeight = fontSize + fontSize/2;
-
-      var maxWidth = canvas.width;
-      var lineHeight = canvas.height * (70/1500);
 
 
-      var x = 0;
-      var y = fontSize;
-      var text = 'All the world \'s a stage, and all the men and women merely players. They have their exits and their entrances; And one man in his time plays many parts.';
+function pasteFullName(name)
+{
+
+  var nameField = document.querySelectorAll('input[id*="enterAddressFullName"]')[0];
+  nameField.value = name;
+
+}
+
+function pasteAddressLine1(addressLine1){
+  var addressLine1Field = document.querySelectorAll('input[id*="AddressLine1"]')[0];
+  addressLine1Field.value = addressLine1;
+
+}
+
+function pasteAddressLine2(addressLine2){
+  var addressLine1Field = document.querySelectorAll('input[id*="AddressLine2"]')[0];
+  addressLine1Field.value = addressLine2;
+
+}
+
+function pasteCity(city){
+
+  var cityField = document.querySelectorAll('input[id*="enterAddressCity"]')[0];
+  cityField.value = city;
+}
 
 
-      var fontType = "Ariel Unicode MS";
-	    var fontColor = "black";
+function pasteProvince(province){
 
-      context.font = fontSize + "px "+fontType;
-      context.fillStyle = fontColor;
+  var provinceField = $('select[id*="enterAddressStateOrRegion"]');
+  provinceField.val(province).change();
 
-      wrapText(context, text, x, y, maxWidth, lineHeight);
-    </script>
-  </body>
-</html>      
+}
+
+function pastePostalCode(postalCode){
+
+  var postalCodeField = document.querySelectorAll('input[id*="enterAddressPostalCode"]')[0];
+  postalCodeField.value = postalCode;
+ 
+
+
+}
+
+function pastePhoneNumber(phoneNumber){
+
+  var phoneNumberField = document.querySelectorAll('input[id*="enterAddressPhoneNumber"]')[0];
+  phoneNumberField.value = phoneNumber;
+ 
+}
+
+function selectBusinessHours(){
+
+
+  var businessHoursField = $('select[id*="usiness"],select[name*="usiness"]'); // Yes, it's called .val(), not .value()
+  businessHoursField.val("BOTH").change();
+
+}

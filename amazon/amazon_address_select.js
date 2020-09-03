@@ -11,81 +11,43 @@ bg_port.onMessage.addListener((request) =>
 
 });
 
-function pasteBuyerAddress(details, savedPhoneNumber){
+function pasteBuyerAddress(details, savedPhoneNumber)
+{
 
     console.log(details);
     console.log("savedPhoneNumber: "+savedPhoneNumber);
 
 
-    document.querySelectorAll('[id*="enterAddressFullName"]')[0].value  = changeBuyerName(details);
-    //document.getElementById('enterAddressFullName').value = changeBuyerName(details);
+    var fullName = changeBuyerName(details);
+    pasteFullName(fullName);
+  
+    var addressLine1 = "- "+details.order.shippingAddressLine1;
+    pasteAddressLine1(addressLine1);
 
-    try {
-        document.getElementById('enterAddressAddressLine1').value = "- "+details.order.shippingAddressLine1;
-    } catch (error) {
-        document.querySelectorAll('[id*="enterAddressLine1"]')[0].value  = "- "+details.order.shippingAddressLine1;
-        console.log(error);
-    }
+    var addressLine2 = details.order.shippingAddressLine2;
+    pasteAddressLine2(addressLine2);
 
-    // document.getElementById('enterAddressAddressLine1').value = "- "+details.order.shippingAddressLine1;
-
-    try {
-        document.querySelectorAll('[id*="enterAddressLine2"]')[0].value  = details.order.shippingAddressLine2;
-    } catch (error) {
-        document.getElementById('enterAddressAddressLine2').value = details.order.shippingAddressLine2;
-        console.log(error);
-    }
+    var city = details.order.city;
+    pasteCity(city);
 
 
-   //document.querySelectorAll('[id*="enterAddressLine2"]')[0].value  = details.order.shippingAddressLine2;
-    //document.getElementById('enterAddressAddressLine2').value = details.order.shippingAddressLine2;
+    var province = details.order.province;
+    pasteProvince(province);
 
+    var postalCode = details.order.postalCode;
+    pastePostalCode(postalCode);
 
-    document.querySelectorAll('[id*="enterAddressCity"]')[0].value  = details.order.city;
-    //document.getElementById('enterAddressCity').value = details.order.city;
+    var phoneNumber = savedPhoneNumber;
+    pastePhoneNumber(phoneNumber);
 
-    document.querySelectorAll('[id*="enterAddressPostalCode"]')[0].value  = details.order.postalCode;
-    //document.getElementById('enterAddressPostalCode').value = details.order.postalCode;
     
-    document.querySelectorAll('[id*="enterAddressStateOrRegion"]')[0].value  = details.order.province;
-    //document.getElementById("enterAddressStateOrRegion").value = details.order.province;
-
-    document.querySelectorAll('[id*="enterAddressPhoneNumber"]')[0].value  = savedPhoneNumber;
-   // document.getElementById('enterAddressPhoneNumber').value = savedPhoneNumber;
+    pasteBusinessHours();
 
 
-   try {
-    document.getElementById("BusinessHours").selectedIndex = 1; 
-
-   } catch (error) {
-    console.log(error);
-   }
 
  
 
-    try {
-        var businessHours = $('[name="address-ui-widgets-addr-details-business-hours"]'); // Yes, it's called .val(), not .value()
-        businessHours.val("BOTH").change();
-
-        setTimeout(() => {
-            businessHours.val("BOTH").change();
-        }, 100);
-
-        setTimeout(() => {
-            businessHours.val("BOTH").change();
-        }, 200);
-       
-    
-       } catch (error) {
-    
-    
-        console.log(error);
-       }
-    
-
    
-
-
 
 
 
@@ -149,5 +111,64 @@ function changeBuyerName(details)
     }
 
     return name;
+
+}
+
+
+function pasteFullName(name)
+{
+
+  var nameField = document.querySelectorAll('input[id*="enterAddressFullName"]')[0];
+  nameField.value = name;
+
+}
+
+function pasteAddressLine1(addressLine1){
+  var addressLine1Field = document.querySelectorAll('input[id*="AddressLine1"]')[0];
+  addressLine1Field.value = addressLine1;
+
+}
+
+function pasteAddressLine2(addressLine2){
+  var addressLine1Field = document.querySelectorAll('input[id*="AddressLine2"]')[0];
+  addressLine1Field.value = addressLine2;
+
+}
+
+function pasteCity(city){
+
+  var cityField = document.querySelectorAll('input[id*="enterAddressCity"]')[0];
+  cityField.value = city;
+}
+
+
+function pasteProvince(province){
+
+  var provinceField = $('select[id*="enterAddressStateOrRegion"]');
+  provinceField.val(province).change();
+
+}
+
+function pastePostalCode(postalCode){
+
+  var postalCodeField = document.querySelectorAll('input[id*="enterAddressPostalCode"]')[0];
+  postalCodeField.value = postalCode;
+ 
+
+
+}
+
+function pastePhoneNumber(phoneNumber){
+
+  var phoneNumberField = document.querySelectorAll('input[id*="enterAddressPhoneNumber"]')[0];
+  phoneNumberField.value = phoneNumber;
+ 
+}
+
+function pasteBusinessHours(){
+
+
+  var businessHoursField = $('select[id*="usiness"],select[name*="usiness"]'); // Yes, it's called .val(), not .value()
+  businessHoursField.val("BOTH").change();
 
 }
