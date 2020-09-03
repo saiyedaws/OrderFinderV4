@@ -17,38 +17,36 @@ function pasteBuyerAddress(details, savedPhoneNumber)
     console.log(details);
     console.log("savedPhoneNumber: "+savedPhoneNumber);
 
-
-    var fullName = changeBuyerName(details);
-    pasteFullName(fullName);
-  
-    var addressLine1 = "- "+details.order.shippingAddressLine1;
-    pasteAddressLine1(addressLine1);
-
-    var addressLine2 = details.order.shippingAddressLine2;
-    pasteAddressLine2(addressLine2);
-
-    var city = details.order.city;
-    pasteCity(city);
-
-
     var province = details.order.province;
-    setTimeout(() => {
-        pasteProvince(province);
-    }, 500);
+    pasteProvince(province);
   
+    pasteBusinessHours();
 
-    var postalCode = details.order.postalCode;
-    pastePostalCode(postalCode);
 
-    setTimeout(() => {
-        pasteBusinessHours();
+    setTimeout(() => 
+    {
+        var fullName = changeBuyerName(details);
+        pasteFullName(fullName);
+      
+        var addressLine1 = "- "+details.order.shippingAddressLine1;
+        pasteAddressLine1(addressLine1);
+    
+        var addressLine2 = details.order.shippingAddressLine2;
+        pasteAddressLine2(addressLine2);
+    
+        var city = details.order.city;
+        pasteCity(city);
+    
+    
+        var province = details.order.province;
+        pasteProvince(province);
+      
+    
+        var phoneNumber = savedPhoneNumber;
+        pastePhoneNumber(phoneNumber);
+    
     }, 1000);
-    
 
-    var phoneNumber = savedPhoneNumber;
-    pastePhoneNumber(phoneNumber);
-
-    
    
 
 
