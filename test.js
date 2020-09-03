@@ -30,7 +30,7 @@ function pasteCity(city){
 function pasteProvince(province){
 
   var provinceField = $('select[id*="enterAddressStateOrRegion"]');
-  provinceField.val(province).change();
+  provinceField.val("Ontario").change();
 
 }
 

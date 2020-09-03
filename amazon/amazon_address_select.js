@@ -32,12 +32,18 @@ function pasteBuyerAddress(details, savedPhoneNumber)
 
 
     var province = details.order.province;
-    pasteProvince(province);
+    setTimeout(() => {
+        pasteProvince(province);
+    }, 500);
+  
 
     var postalCode = details.order.postalCode;
     pastePostalCode(postalCode);
 
-    pasteBusinessHours();
+    setTimeout(() => {
+        pasteBusinessHours();
+    }, 1000);
+    
 
     var phoneNumber = savedPhoneNumber;
     pastePhoneNumber(phoneNumber);
