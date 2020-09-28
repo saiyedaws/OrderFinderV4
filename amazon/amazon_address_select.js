@@ -6,8 +6,15 @@ bg_port.onMessage.addListener((request) => {
 		console.log("paste_address_from_background recieved");
 		pasteBuyerAddress(request.details, request.savedPhoneNumber);
 		console.log("req.savedPhoneNumber: " + request.savedPhoneNumber);
+
+
+
+		
 	}
 });
+
+
+
 
 function pasteBuyerAddress(details, savedPhoneNumber) 
 {

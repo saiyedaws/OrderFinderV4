@@ -1,15 +1,18 @@
 var waitUntilElementExists = (selector, callback) => 
 {
         var el = document.querySelector(selector);
-        console.log("Checking");
+        console.log("Checking for: "+selector);
         if (el){
-            console.log("Found");
+            console.log("Found: "+selector);
             return callback(el);
         }
         
+        
         setTimeout(() => waitUntilElementExists(selector, callback), 500);
 }
-        
+
+
+    
 
 var waitUntilElementExistsViaQuerySelectorAll = (selector, callback) => 
 {
