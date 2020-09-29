@@ -73,8 +73,8 @@ function getAmazonDeliveryData(){
         deliveryDate: getDeliveryDate(),
         title: document.getElementsByClassName("asin-title")[0].innerText,
         buyerAddress: document.getElementsByClassName("displayAddressUL")[0].innerText,
-        itemImage: document.getElementsByClassName("a-column a-span3")[0].querySelectorAll("img")[0].getAttribute("src")
-
+        itemImage: document.getElementsByClassName("a-column a-span3")[0].querySelectorAll("img")[0].getAttribute("src"),
+        date: getDate()
 
     }
 
@@ -86,6 +86,8 @@ function getAmazonDeliveryData(){
         'deliveryData': deliveryData
     });
 
+    appendToLocalStorage(deliveryData);
+
 
     var storedLegal = chrome.storage.local.get('deliveryData', function(deliveryData) 
     {
@@ -95,6 +97,31 @@ function getAmazonDeliveryData(){
     });
 
 }
+
+function appendToLocalStorage(newItem)
+{
+
+var oldItems = JSON.parse(localStorage.getItem('orderDetails')) || [];
+
+oldItems.push(newItem);
+
+localStorage.setItem('orderDetails', JSON.stringify(oldItems));
+
+
+}
+
+function getDate()
+ {
+     
+    var today = new Date();
+    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    var dateTime = date+' '+time;
+
+    return dateTime;
+
+ }
+
 
 
 
