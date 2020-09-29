@@ -67,7 +67,7 @@ function decodeHTMLEntities(text)
 
 function getAmazonDeliveryData(){
 
-    deliveryData = 
+    var deliveryData = 
     {
         totalPurchasePrice: getTotalPurchasePrice(),
         deliveryDate: getDeliveryDate(),
@@ -86,7 +86,7 @@ function getAmazonDeliveryData(){
         'deliveryData': deliveryData
     });
 
-    appendToLocalStorage(deliveryData);
+   
 
 
     var storedLegal = chrome.storage.local.get('deliveryData', function(deliveryData) 
@@ -96,49 +96,11 @@ function getAmazonDeliveryData(){
 
     });
 
-}
-
-function appendToLocalStorage(newItem)
-{
-    /*
-
-var oldItems = JSON.parse(localStorage.getItem('allOrderDetails')) || [];
-
-oldItems.push(newItem);
-
-console.log('newItem',newItem);
-console.log('oldItems',oldItems);
-
-localStorage.setItem('allOrderDetails', JSON.stringify(oldItems));
-*/
-
-chrome.storage.local.get('allOrderDetails', function(storage) 
-{
-    console.log('storage.allOrderDetails',storage.allOrderDetails);
-
-    if(!Array.isArray(storage.allOrderDetails)){
-        var oldItems = [];
-
-        console.log("Is not array");
-
-    }else{
-        var oldItems = storage.allOrderDetails;
-        console.log("Is array");
-    }
-
-    oldItems.push(newItem);
-
-   
-    chrome.storage.local.set({
-        'allOrderDetails': oldItems
-    });
-
-});
-
-
-
+    return deliveryData;
 
 }
+
+
 
 function getDate()
  {
@@ -154,7 +116,112 @@ function getDate()
 
 
 
+function appendCustomOrderButton(orderDataNote)
+{
+    var element = document.body;
+
+    var button = document.createElement("button");
+    button.id = "custom_order_button";
+    button.innerHTML = "Order Now and Copy To Clipboard";
+    //css
+    button.style.color = "blue";
+    button.style.padding = "15px 32px";
+
+    element.prepend(button);
 
 
-waitUntilElementExists('.asin-title', (el) => getAmazonDeliveryData());
+    button.onclick = function () 
+    {
+
+       
+        chrome.storage.local.get('deliveryData', function(storage) 
+        {
+            appendToLocalStorage(storage.deliveryData,"allOrderDetails");
+         
+    
+        });
+
+      
+        var input = document.createElement('textarea');
+        document.body.appendChild(input);
+        input.value = orderDataNote;
+        input.focus();
+        input.select();
+        document.execCommand('Copy');
+        input.remove();
+
+
+        console.log(orderDataNote);
+
+	};
+   
+
+}
+
+async function makeNoteAndOrder()
+{
+    var deliveryData = getAmazonDeliveryData();
+
+  
+
+   
+    var orderDataNote = await makeNote();
+
+    await appendCustomOrderButton(orderDataNote);
+
+
+}
+
+function makeNote()
+{
+    console.log("Making Note");
+
+    return new Promise((resolve)=>
+    {
+
+        chrome.storage.local.get('deliveryData', function(storage) 
+        {
+        
+            console.log(storage);
+    
+    
+            //ETA
+            var deliveryDate = storage.deliveryData.deliveryDate;
+            var pcID = localStorage.getItem("pcID");
+            var email = localStorage.getItem("email") || "";
+    
+            var dateObj = new Date();
+            var month = dateObj.getUTCMonth() + 1; //months from 1-12
+            var day = dateObj.getUTCDate();
+            var year = dateObj.getUTCFullYear();
+    
+            var newdate = year + "/" + month + "/" + day;
+            
+    
+    
+            var orderDataNote = 
+            "SS/ "+email+"/ "+pcID+"/ "+deliveryDate+" / Ordered on: "+newdate+" -";
+    
+            console.log(orderDataNote);
+    
+           
+    
+            resolve(orderDataNote);
+    
+            
+            
+    
+    
+        });
+
+    });
+
+
+
+
+
+
+}
+
+waitUntilElementExists('.asin-title', (el) => makeNoteAndOrder());
 
