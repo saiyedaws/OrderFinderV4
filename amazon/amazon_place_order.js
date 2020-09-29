@@ -100,12 +100,42 @@ function getAmazonDeliveryData(){
 
 function appendToLocalStorage(newItem)
 {
+    /*
 
-var oldItems = JSON.parse(localStorage.getItem('orderDetails')) || [];
+var oldItems = JSON.parse(localStorage.getItem('allOrderDetails')) || [];
 
 oldItems.push(newItem);
 
-localStorage.setItem('orderDetails', JSON.stringify(oldItems));
+console.log('newItem',newItem);
+console.log('oldItems',oldItems);
+
+localStorage.setItem('allOrderDetails', JSON.stringify(oldItems));
+*/
+
+chrome.storage.local.get('allOrderDetails', function(storage) 
+{
+    console.log('storage.allOrderDetails',storage.allOrderDetails);
+
+    if(!Array.isArray(storage.allOrderDetails)){
+        var oldItems = [];
+
+        console.log("Is not array");
+
+    }else{
+        var oldItems = storage.allOrderDetails;
+        console.log("Is array");
+    }
+
+    oldItems.push(newItem);
+
+   
+    chrome.storage.local.set({
+        'allOrderDetails': oldItems
+    });
+
+});
+
+
 
 
 }

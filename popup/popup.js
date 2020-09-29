@@ -170,6 +170,7 @@ function getSelectedEmail(){
     document.getElementById("savedEmailID").innerText = profileEmail;
 
 }
+
 document.getElementById('save_email_button').addEventListener('click', getSelectedEmail);
 
 
@@ -225,3 +226,26 @@ function makeNote()
 }
 
 document.getElementById('make_note_button').addEventListener('click', makeNote);
+
+document.getElementById('view_orders').addEventListener('click', viewOrders);
+
+function viewOrders(){
+
+   
+
+    var allOrderDetails = JSON.parse(localStorage.getItem('allOrderDetails'));
+
+    
+    console.log('allOrderDetails',allOrderDetails);
+
+    chrome.storage.local.get('allOrderDetails', function(storage) 
+    {
+        console.log('storage.allOrderDetails',storage.allOrderDetails);
+    });
+  
+
+
+
+   
+
+}

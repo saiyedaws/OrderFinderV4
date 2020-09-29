@@ -96,6 +96,19 @@ chrome.extension.onConnect.addListener(port =>
                 }
 
 
+                                // Checks the form submission
+                if(request.type === 'from_popup' && request.command === "view_orders") 
+                {
+ 
+                    var allOrderDetails = JSON.parse(localStorage.getItem('allOrderDetails'));
+                    console.log('allOrderDetails',allOrderDetails);
+                
+
+                    
+                }
+
+
+
                 if(request.type === 'from_popup' && request.command === "paste_address") 
                 {
                     console.log("paste_address");
