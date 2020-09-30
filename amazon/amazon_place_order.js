@@ -118,16 +118,19 @@ function getDate()
 
 function appendCustomOrderButton(orderDataNote)
 {
-    var element = document.body;
+    //var element = document.body;
+    var element = document.getElementById("placeYourOrder");
+    element.style.display = "none";
 
     var button = document.createElement("button");
     button.id = "custom_order_button";
+    button.type = "button";
     button.innerHTML = "Order Now and Copy To Clipboard";
     //css
     button.style.color = "blue";
     button.style.padding = "15px 32px";
 
-    element.prepend(button);
+    element.parentElement.prepend(button);
 
 
     button.onclick = function () 
@@ -152,6 +155,9 @@ function appendCustomOrderButton(orderDataNote)
 
 
         console.log(orderDataNote);
+
+        
+        document.getElementById("placeYourOrder").click();
 
 	};
    
