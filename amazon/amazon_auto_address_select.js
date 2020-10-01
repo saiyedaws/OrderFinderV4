@@ -32,7 +32,7 @@ chrome.runtime.onMessage.addListener(
 
         waitUntilElementExists('#apx-content', (el) => choosePaymentMethod());
 
-        waitUntilElementExists('.asin-title', (el) => makeNoteAndOrder());
+        
 
     
     try {
