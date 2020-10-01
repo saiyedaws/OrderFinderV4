@@ -120,7 +120,7 @@ function appendCustomOrderButton(orderDataNote)
 {
     //var element = document.body;
     var element = document.getElementById("placeYourOrder");
-    element.style.display = "none";
+    //element.style.display = "none";
 
     var button = document.createElement("button");
     button.id = "custom_order_button";
@@ -157,7 +157,7 @@ function appendCustomOrderButton(orderDataNote)
         console.log(orderDataNote);
 
         
-        document.getElementById("placeYourOrder").click();
+        //document.getElementById("placeYourOrder").click();
 
 	};
    
@@ -178,23 +178,69 @@ async function makeNoteAndOrder()
 
 }
 
-function makeNote()
+
+function getPCID()
+{
+    console.log("get pc  id start");
+
+    return new Promise((resolve)=>{
+        chrome.runtime.sendMessage(
+            { type: "from_amazon", command: "get_pc_id" }, function(response)
+            {
+                
+                console.log("response",response);
+                resolve(response.pcID);
+            }
+        );
+    });
+
+
+}
+
+function getEmail()
+{
+    return new Promise((resolve)=>{
+        chrome.runtime.sendMessage(
+            { type: "from_amazon", command: "get_email" }, function(response)
+            {
+                
+                console.log("response",response);
+                resolve(response.email);
+            }
+        );
+    });
+
+
+}
+
+async function makeNote()
 {
     console.log("Making Note");
 
+    var pcID = await getPCID();
+    var email = await getEmail();
+
     return new Promise((resolve)=>
     {
+   
 
         chrome.storage.local.get('deliveryData', function(storage) 
         {
         
+
+    
+            console.log("pcId",pcID);
+            console.log("email",email);
+   
+
+
+
             console.log(storage);
     
     
             //ETA
             var deliveryDate = storage.deliveryData.deliveryDate;
-            var pcID = localStorage.getItem("pcID");
-            var email = localStorage.getItem("email") || "";
+        
     
             var dateObj = new Date();
             var month = dateObj.getUTCMonth() + 1; //months from 1-12

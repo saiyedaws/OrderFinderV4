@@ -10,6 +10,31 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
 
 		orderAmazonItem(sender.tab.id);
 	}
+
+
+	if (
+		message.type === "from_amazon" &&
+		message.command === "get_pc_id"
+	) {
+
+
+		
+		var pcID = localStorage.getItem("pcID");
+		sendResponse({pcID: pcID});    
+	}
+
+
+	if (
+		message.type === "from_amazon" &&
+		message.command === "get_email"
+	) {
+
+
+		
+		var email = localStorage.getItem("email");
+		sendResponse({email: email});    
+	}
+
 });
 
 function orderAmazonItem(amazonAutoOrderTab) {
