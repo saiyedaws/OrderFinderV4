@@ -157,7 +157,7 @@ function appendCustomOrderButton(orderDataNote)
         console.log(orderDataNote);
 
         
-        //document.getElementById("placeYourOrder").click();
+        document.getElementById("placeYourOrder").click();
 
 	};
    
